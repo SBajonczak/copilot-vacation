@@ -2,10 +2,21 @@
     "type": "AdaptiveCard",
     "body": [
         {
-            "type": "TextBlock",
-            "size": "Medium",
-            "weight": "Bolder",
-            "text": "Urlaubsinformation"
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "size": "Medium",
+                            "weight": "Bolder",
+                            "text": "Urlaubsinformation"
+                        }
+                    ]
+                }
+            ]
         },
         {
             "type": "ColumnSet",
@@ -25,16 +36,87 @@
             ]
         },
         {
-            "type": "TextBlock",
-            "text": "Zeitraum: ${Start} - ${End}",
-            "wrap": true
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "80px",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Zeitraum:",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${Start} - ${End}",
+                            "wrap": true
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "type": "TextBlock",
-            "text": "Dauer: ${Duration}",
-            "wrap": true
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "80px",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Dauer:",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${Duration}",
+                            "wrap": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "80px",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Status",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "${State}",
+                            "wrap": true
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
-    "version": "1.6"
+    "version": "1.5"
 }
