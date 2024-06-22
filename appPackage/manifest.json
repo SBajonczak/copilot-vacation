@@ -1,0 +1,78 @@
+{
+    "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.16",
+    "version": "1.0.0",
+    "id": "${{TEAMS_APP_ID}}",
+    "developer": {
+        "name": "Sascha Bajonczak",
+        "websiteUrl": "https://blog.bajonczak.com",
+        "privacyUrl": "https://blog.bajonczak.com/privacy",
+        "termsOfUseUrl": "https://blog.bajonczak.com/termofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Holiday/Vacation/Absences",
+        "full": "Ask me anything about absences, holdays or vacations for all your Employees"
+    },
+    "description": {
+        "short": "Getting all informations about vacations / holidays oder absences.",
+        "full": "Getting all informations about vacations / holidays oder absences. Can be used to ask for time off by date range or specific date."
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [
+        {
+            "botId": "${{BOT_ID}}",
+            "scopes": [
+                "personal",
+                "team",
+                "groupchat"
+            ],
+            "supportsFiles": false,
+            "isNotificationOnly": false
+        }
+    ],
+    "composeExtensions": [
+        {
+            "botId": "${{BOT_ID}}",
+            "commands": [                
+                {
+                    "id": "absence",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Get information about absences / holidays or vacations. Can be used to ask for time off by date or range.",
+                    "title": "get absence",
+                    "type": "query",
+                    "initialRun": true,
+                    "fetchTask": false,
+                    "parameters": [
+                        {
+                            "name": "startDate",
+                            "title": "Start",
+                            "description": "Contains the requested start date. Output is a date",
+                            "inputType": "date"
+                        },
+                        {
+                            "name": "endDate",
+                            "title": "End",
+                            "description": "Contains the requested start date if exists. Output is a date",
+                            "inputType": "date"
+                        }
+
+                    ]
+                }
+            ]
+        }
+    ],
+    "configurableTabs": [],
+    "staticTabs": [],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": []
+}
