@@ -4,6 +4,7 @@ import moment, { Moment } from "moment";
 // Accessing SQL Server
 import sql from 'mssql'
 import { InputParameters } from "../app/PromptApp";
+import config from '../config';
 
 export interface AbsenceItem {
     id: number,
@@ -22,11 +23,11 @@ export default class AbsenceService {
     constructor() {
 
         this.config = {
-            user: 'RCSAdmin', // better stored in an app setting such as process.env.DB_USER
-            password: '?Hallo11!', // better stored in an app setting such as process.env.DB_PASSWORD
-            server: 'p64c88dldk.database.windows.net', // better stored in an app setting such as process.env.DB_SERVER
+            user: config.database.user, // better stored in an app setting such as process.env.DB_USER
+            password: config.database.password, // better stored in an app setting such as process.env.DB_PASSWORD
+            server: config.database.server, // better stored in an app setting such as process.env.DB_SERVER
             port: 1433, // optional, defaults to 1433, better stored in an app setting such as process.env.DB_PORT
-            database: 'DB-HBS-V2-PROD', // better stored in an app setting such as process.env.DB_NAME
+            database: config.database.database, // better stored in an app setting such as process.env.DB_NAME
             authentication: {
                 type: 'default'
             },
