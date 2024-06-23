@@ -3,6 +3,15 @@
     "manifestVersion": "1.16",
     "version": "1.0.0",
     "id": "${{TEAMS_APP_ID}}",
+    "localizationInfo": {
+        "defaultLanguageTag": "en-us",
+        "additionalLanguages": [
+            {
+                "file": "de-de.json",
+                "languageTag": "de"
+            }
+        ]
+    },
     "developer": {
         "name": "Sascha Bajonczak",
         "websiteUrl": "https://blog.bajonczak.com",
@@ -19,7 +28,7 @@
     },
     "description": {
         "short": "Getting all informations about vacations / holidays oder absences.",
-        "full": "Getting all informations about vacations / holidays oder absences. Can be used to ask for time off by date range or specific date."
+        "full": "Getting all informations about vacations / holidays oder absences. Can be used to ask for time off by date range or specific date and or for specific users / employees or Colleagues"
     },
     "accentColor": "#FFFFFF",
     "bots": [
@@ -37,19 +46,30 @@
     "composeExtensions": [
         {
             "botId": "${{BOT_ID}}",
-            "commands": [                
+            "commands": [
                 {
                     "id": "absence",
                     "context": [
                         "compose",
                         "commandBox"
                     ],
-                    "description": "Get information about absences / holidays or vacations. Can be used to ask for time off by date or range.",
+                    "description": "Get information about absences /holidays or vacations. Can be used to ask for time off by date range and /or for specific users.",
                     "title": "get absence",
                     "type": "query",
-                    "initialRun": true,
+                    "initialRun": false,
                     "fetchTask": false,
+                    "taskInfo": {
+                        "title": "Search for absence",
+                        "height": "120",
+                        "width": "220"
+                    },
                     "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Employee",
+                            "description": "Contains the aad id for the requested user. This parameter is optional Format 'Lastname, firstname'",
+                            "inputType": "text"
+                        },
                         {
                             "name": "startDate",
                             "title": "Start",
@@ -61,8 +81,13 @@
                             "title": "End",
                             "description": "Contains the requested start date if exists. Output is a date",
                             "inputType": "date"
+                        },
+                        {
+                            "name": "scope",
+                            "title": "Scope",
+                            "description": "Contains the scope of the request. Possible values are 'user','mine', 'team', 'all' and 'none'",
+                            "inputType": "text"
                         }
-
                     ]
                 }
             ]

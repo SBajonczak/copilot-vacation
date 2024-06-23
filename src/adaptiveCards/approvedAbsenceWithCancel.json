@@ -82,10 +82,22 @@
                     "items": [
                         {
                             "type": "TextBlock",
-                            "text": "${Duration}",
+                            "text": "${Duration} Day(s)",
                             "wrap": true
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Execute",
+                    "title": "Cancel",
+                    "id": "cancel",
+                    "role": "Button",
+                    "data": "${id}"
                 }
             ]
         }

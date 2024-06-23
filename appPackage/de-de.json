@@ -1,0 +1,10 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.5/MicrosoftTeams.Localization.schema.json",
+    "name.short": "Urlaube / Abwesenheiten",
+    "name.full": "Frage mich alles zu den Urlauben und Abwesenheiten der Mitarbeiter und Kollegen",
+    "description.short": "Ermittlet alle Informationen zu Abwesenheiten order UrlaubeGetting.",
+    "description.full": "Ermittlet alle Informationen zu Abwesenheiten order UrlaubeGetting. Kann verwendet werden um nach Abwesenheiten / Urlaubs oder Auszeiten für ein Datum oder Bereich zu Fragen. Hier können auch optional gezielt nach Urlauben für bestiemmte Mitarbeiter / Benutzer gefragt werden.",
+    "composeExtensions[0].commands[0].description": "Kann verwendet werden um nach Abwesenheiten / Urlaube für einen Zeitraum und oder Benutzer zu fragen.",
+    "composeExtensions[0].commands[0].title": "Suche Urlaube"
+  
+}

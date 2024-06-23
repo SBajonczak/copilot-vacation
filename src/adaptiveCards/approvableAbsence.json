@@ -82,10 +82,28 @@
                     "items": [
                         {
                             "type": "TextBlock",
-                            "text": "${Duration}",
+                            "text": "${Duration} Day(s)",
                             "wrap": true
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Execute",
+                    "title": "Approve",
+                    "id": "approve",
+                    "role": "Button",
+                    "data": "${id}"
+                },
+                {
+                    "type": "Action.Execute",
+                    "title": "Decline",
+                    "data": "${id}",
+                    "id":"decline"
                 }
             ]
         }

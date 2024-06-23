@@ -8,18 +8,26 @@ import {
   MessagingExtensionResponse,
   Attachment,
   MessagingExtensionParameter,
+  ChannelAccount,
+  isChannelAccount,
 } from "botbuilder";
 import * as ACData from "adaptivecards-templating";
 
 
 import personaCard from "../adaptiveCards/persona.json"
+import approvableAbsence from "../adaptiveCards/approvableAbsence.json"
+import absenceWithCancelation from "../adaptiveCards/approvedAbsenceWithCancel.json"
 import { Input } from "adaptivecards";
 import { HourlyRate, PersonalInformation, Skill } from "../DataFactories/Interfaces";
 import AbsenceService, { AbsenceItem } from "../DataFactories/AbsenceService";
 import moment from "moment";
 
 
-interface InputParameters {
+export interface InputParameters {
+  from: ChannelAccount
+  scope: string,
+  user:string,
+  tenantId: string,
   Start: Date,
   End: Date
 }
@@ -44,15 +52,28 @@ export class PromptApp extends TeamsActivityHandler {
    * @param inputParameters Parsing parameters
    * @returns 
    */
-  private async parseParameters(inputParameters: MessagingExtensionParameter[]): Promise<InputParameters> {
-    let output: InputParameters = { Start: new Date(), End: new Date() };
+  private async parseParameters(inputParameters: MessagingExtensionParameter[], context: TurnContext): Promise<InputParameters> {
+    let output: InputParameters = {user:'', from: { id: '', name: '' }, tenantId: '', Start: new Date(), End: new Date(), scope: '' };
+    console.log(inputParameters);
+    output.from = context.activity.from
+    output.tenantId = context.activity.channelData.tenant.id
     inputParameters.forEach((parameter: MessagingExtensionParameter) => {
       switch (parameter.name) {
+        case "user":
+          output.user = parameter.value;
+          break;
+        case "scope":
+          // mine', 'team', 'all' and 'none
+          output.scope = parameter.value;
+          if (output.scope == '') {
+            output.scope = 'none';
+          }
+          break;
         case "startDate":
-          output.Start = moment(parameter.value,'MM/DD/YYYY').toDate();
+          output.Start = moment(parameter.value, 'MM/DD/YYYY').toDate();
           break;
         case "endDate":
-          output.End = moment(parameter.value,'MM/DD/YYYY').toDate();
+          output.End = moment(parameter.value, 'MM/DD/YYYY').toDate();
           break
       }
 
@@ -60,18 +81,29 @@ export class PromptApp extends TeamsActivityHandler {
     return output;
   }
 
-  public GetAbsenceHerocard(item: AbsenceItem): any {
-    let template: ACData.Template = new ACData.Template(personaCard);
+  public GetAbsenceHerocard(item: AbsenceItem, inputParameters: InputParameters): any {
+
+    let template: ACData.Template;
+    if (item.State.toLocaleLowerCase() == 'pending') {
+      template = new ACData.Template(approvableAbsence)
+    }
+    else {
+      template = new ACData.Template(personaCard);
+      if (item.UserOid.toLocaleLowerCase() === inputParameters.from.aadObjectId.toLocaleLowerCase()) {
+        // allowing cancelation
+        template = new ACData.Template(absenceWithCancelation);
+      }
+    }
     let preview = CardFactory.heroCard(`${item.name} (Duration ${item.Duration} Day(s))`);
 
     const card = template.expand({
       $root: {
-
+        id: item.id,
         Name: item.name,
         Start: moment(item.Start).format("DD.MM.YYYY"),
         End: moment(item.End).format("DD.MM.YYYY"),
         Duration: item.Duration,
-        State:item.State
+        State: item.State
       },
     });
     // Adapt to the attachemnt
@@ -79,25 +111,18 @@ export class PromptApp extends TeamsActivityHandler {
     return attachment;
   }
 
-
-
-
-
   public async handleAbsenceRequest(
     context: TurnContext,
     query: MessagingExtensionQuery,
     inputParameters: InputParameters
   ): Promise<MessagingExtensionResponse> {
 
-    let rates: AbsenceItem[] = await this.absenceService.GetAbsencesByDate(inputParameters.Start, inputParameters.End);
+    let rates: AbsenceItem[] = await this.absenceService.GetAbsencesByDate(inputParameters);
     let attachments: Attachment[] = [];
     rates.forEach((item: AbsenceItem) => {
-
       // Load the result Hero card template
-      attachments.push(this.GetAbsenceHerocard(item));
-
+      attachments.push(this.GetAbsenceHerocard(item, inputParameters));
     });
-
     // Return the result
     return {
       composeExtension: {
@@ -106,7 +131,6 @@ export class PromptApp extends TeamsActivityHandler {
         attachments: attachments,
       },
     };
-    return null;
   }
 
   // Search.
@@ -114,10 +138,7 @@ export class PromptApp extends TeamsActivityHandler {
     context: TurnContext,
     query: MessagingExtensionQuery
   ): Promise<MessagingExtensionResponse> {
-    // Parsing the input parameters
-    console.log(JSON.stringify(query));
-    let inputParameters = await this.parseParameters(query.parameters);
-
+    let inputParameters = await this.parseParameters(query.parameters, context);
     switch (query.commandId) {
       case "absence":
         return await this.handleAbsenceRequest(context, query, inputParameters);
