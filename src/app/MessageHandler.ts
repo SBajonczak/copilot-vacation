@@ -1,4 +1,5 @@
 import { ChannelAccount, TurnContext } from "botbuilder";
+import absenceRequest from "../adaptiveCards/absenceRequest.json"
 import AbsenceService, { AbsenceItem } from "../DataFactories/AbsenceService";
 
 
@@ -6,14 +7,14 @@ export interface InvokeParams {
     from: ChannelAccount,
     id: number
 }
-export default class AdaptiveCardHandler {
+export default class MessageHandler {
     private parameters: InvokeParams;
     private absenceService: AbsenceService;
     constructor() {
         this.absenceService = new AbsenceService();
     }
     public isAction(context: TurnContext): boolean {
-        let result: boolean = context.activity.type === 'invoke' && context.activity.value.action != null && context.activity.value.action.data != null;
+        let result: boolean = context.activity.type === 'message';
         return result
     }
 
@@ -22,18 +23,12 @@ export default class AdaptiveCardHandler {
     public async Handle(context: TurnContext) {
         // Check if the action is from our button
         // let parameters: InvokeParams = this.parseParam(context);
-        this.parameters = this.parseParam(context);
+        //this.parameters = this.parseParam(context);
 
-        switch (context.activity.value.action.id) {
-            case "decline":
-                this.HandleDeclined(context);
-                break;
-            case "approve":
-                this.HandleApprove(context);
-                break;
-            case "cancel":
-                this.HandleCancel(context);
-                break;
+        if (context.activity.text.indexOf('/+') >= -1) {
+
+        } else {
+            context.sendActivity("Bitte geben Sie /+ ein um den Anfrageprozess zu starten");
         }
     }
 

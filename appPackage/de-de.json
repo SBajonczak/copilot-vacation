@@ -1,10 +1,30 @@
 {
     "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.5/MicrosoftTeams.Localization.schema.json",
     "name.short": "Urlaube / Abwesenheiten",
-    "name.full": "Frage mich alles zu den Urlauben und Abwesenheiten der Mitarbeiter und Kollegen",
+    "name.full": "Plugin zur Ermittlung der Urlaube und Abwesenheitsn",
     "description.short": "Ermittlet alle Informationen zu Abwesenheiten order UrlaubeGetting.",
     "description.full": "Ermittlet alle Informationen zu Abwesenheiten order UrlaubeGetting. Kann verwendet werden um nach Abwesenheiten / Urlaubs oder Auszeiten für ein Datum oder Bereich zu Fragen. Hier können auch optional gezielt nach Urlauben für bestiemmte Mitarbeiter / Benutzer gefragt werden.",
     "composeExtensions[0].commands[0].description": "Kann verwendet werden um nach Abwesenheiten / Urlaube für einen Zeitraum und oder Benutzer zu fragen.",
-    "composeExtensions[0].commands[0].title": "Suche Urlaube"
+    "composeExtensions[0].commands[0].title": "Suche Urlaube",
+
+    "composeExtensions[0].commands[0].parameters[0].title": "Mitarbeiter",
+    "composeExtensions[0].commands[0].parameters[0].description": "Beinhaltet die EntraId des angeforderten Benutzers. Es ist optional das Format 'Lastname, firstname'",
+    "composeExtensions[0].commands[0].parameters[1].title": "Start",
+    "composeExtensions[0].commands[0].parameters[1].description": "Beinhaltet das angeforderte Startdatum. Output ist ein date",
+    "composeExtensions[0].commands[0].parameters[2].title": "Ende",
+    "composeExtensions[0].commands[0].parameters[2].description": "Beinhaltet das angeforderte Enddatum. Output ist ein date",
+    "composeExtensions[0].commands[0].parameters[3].title": "Bereich",
+    "composeExtensions[0].commands[0].parameters[3].description": "Beinhaltet den Bereich der Abfrage. Mögliches mapping ist 'user','mine', 'team', 'all' und 'none'",
+    "composeExtensions[0].commands[1].description": "Create an absence or Holiday request for the current user",
+    "composeExtensions[0].commands[1].title": "Erstellt Urlaube",
+    "composeExtensions[0].commands[1].parameters[0].title": "Mitarbeiter",
+    "composeExtensions[0].commands[1].parameters[0].description": "Beinhaltet die EntraId des angeforderten Benutzers. Es ist optional das Format 'Lastname, firstname'",
+    "composeExtensions[0].commands[1].parameters[1].title": "Start",
+    "composeExtensions[0].commands[1].parameters[1].description": "Beinhaltet das angeforderte Startdatum. Output ist ein date",
+    "composeExtensions[0].commands[1].parameters[2].title": "Ende",
+    "composeExtensions[0].commands[1].parameters[2].description": "Beinhaltet das angeforderte Enddatum. Output ist ein date",
+
+
+    
   
 }

@@ -8,10 +8,12 @@ import adapter from "./adapter";
 import { PromptApp } from "./app/PromptApp";
 import { HandleActionResponse } from "botbuilder";
 import AdaptiveCardHandler from "./app/AdaptiveCardHandler";
+import MessageHandler from "./app/MessageHandler";
 
 const promtApp = new PromptApp();
-const handler:AdaptiveCardHandler = new AdaptiveCardHandler(); 
+const handler: AdaptiveCardHandler = new AdaptiveCardHandler();
 // Create HTTP server.
+const messageHandler: MessageHandler = new MessageHandler();
 const server = restify.createServer();
 server.use(restify.plugins.bodyParser());
 
@@ -24,6 +26,9 @@ server.post("/api/messages", async (req, res) => {
   // Route received a request to adapter for processing
   await adapter.process(req, res as any, async (context) => {
     // Check for incoming message activity
+    if (messageHandler.isAction(context)) {
+      messageHandler.Handle(context);
+    }
     if (handler.isAction(context)) {
       // Check if the action is from our button
       handler.Handle(context);

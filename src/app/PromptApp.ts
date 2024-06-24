@@ -139,6 +139,7 @@ export class PromptApp extends TeamsActivityHandler {
     query: MessagingExtensionQuery
   ): Promise<MessagingExtensionResponse> {
     let inputParameters = await this.parseParameters(query.parameters, context);
+    console.log(JSON.stringify(query));
     switch (query.commandId) {
       case "absence":
         return await this.handleAbsenceRequest(context, query, inputParameters);

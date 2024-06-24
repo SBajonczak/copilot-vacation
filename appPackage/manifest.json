@@ -53,13 +53,13 @@
                         "compose",
                         "commandBox"
                     ],
-                    "description": "Get information about absences /holidays or vacations. Can be used to ask for time off by date range and /or for specific users.",
+                    "description": "Search for absences or Holidays. Can be used to ask for time off by date range and /or for specific users.",
                     "title": "get absence",
                     "type": "query",
                     "initialRun": false,
                     "fetchTask": false,
                     "taskInfo": {
-                        "title": "Search for absence",
+                        "title": "Search for absence or holidays",
                         "height": "120",
                         "width": "220"
                     },
@@ -87,6 +87,43 @@
                             "title": "Scope",
                             "description": "Contains the scope of the request. Possible values are 'user','mine', 'team', 'all' and 'none'",
                             "inputType": "text"
+                        }
+                    ]
+                },
+                {
+                    "id": "createAbsence",
+                    "context": [
+                        "compose",
+                        "commandBox"
+                    ],
+                    "description": "Create an absence or Holiday request for the current user",
+                    "title": "create absence",
+                    "type": "query",
+                    "initialRun": false,
+                    "fetchTask": false,
+                    "taskInfo": {
+                        "title": "Create absence request",
+                        "height": "120",
+                        "width": "220"
+                    },
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "title": "Employee",
+                            "description": "Contains the aad id for the requested user. This parameter is optional Format 'Lastname, firstname'",
+                            "inputType": "text"
+                        },
+                        {
+                            "name": "startDate",
+                            "title": "Start",
+                            "description": "Contains the requested start date. Output is a date",
+                            "inputType": "date"
+                        },
+                        {
+                            "name": "endDate",
+                            "title": "End",
+                            "description": "Contains the requested start date if exists. Output is a date",
+                            "inputType": "date"
                         }
                     ]
                 }

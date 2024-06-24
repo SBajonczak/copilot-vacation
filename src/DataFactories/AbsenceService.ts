@@ -68,6 +68,46 @@ export default class AbsenceService {
             
         }
     }
+    public async GetAbsencesById(id: number): Promise<AbsenceItem> {
+        let result: AbsenceItem;
+        try {
+
+            this.poolConnection = await sql.connect(this.config);
+            let query: string = `SELECT id,[Begin],[End],UserDisplayName,Title, isHalfDay,[State],UserOid from absences where id='${id}'`;
+            console.log(query);
+            var resultSet = await this.poolConnection.request().query(query);
+
+
+            // Map to object
+            resultSet.recordset.forEach(row => {
+
+                let duration: number = moment(row.End).diff(moment(row.Begin), 'd');
+                if (duration == 0) {
+                    // required whn they use only one day.
+                    duration = 1;
+                    if (row.isHalfDay) {
+                        duration = 0.5;
+                    }
+                }
+
+                result= {
+                    UserOid: row.UserOid,
+                    id: row.id,
+                    name: row.UserDisplayName,
+                    Start: moment(row.Begin).toDate(),
+                    End: moment(row.End).toDate(),
+                    Duration: duration,
+                    State: row.State
+                };
+            });
+
+            this.poolConnection.close();
+        } catch (err) {
+            console.error(err.message);
+        }
+        return result;
+    
+    }
     public async GetAbsencesByDate(inputData: InputParameters): Promise<AbsenceItem[]> {
         let start: Date = inputData.Start;
         let end: Date = inputData.End;

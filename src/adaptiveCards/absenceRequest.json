@@ -1,0 +1,93 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "size": "Medium",
+                            "weight": "Bolder",
+                            "text": "Urlaubsanfrage"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "weight": "Bolder",
+                            "text": "${Name}",
+                            "wrap": true
+                        }
+                    ],
+                    "width": "stretch"
+                }
+            ]
+        },
+        {
+            "type": "ColumnSet",
+            "columns": [
+                {
+                    "type": "Column",
+                    "width": "80px",
+                    "items": [
+                        {
+                            "type": "TextBlock",
+                            "text": "Zeitraum:",
+                            "wrap": true
+                        }
+                    ]
+                },
+                {
+                    "type": "Column",
+                    "width": "stretch",
+                    "items": [
+                        {
+                            "type": "Input.Date",
+                            "id": "start"
+                        },
+                        {
+                            "type": "TextBlock",
+                            "text": "bis",
+                            "wrap": true
+                        },
+                        {
+                            "type": "Input.Date",
+                            "id": "end"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "ActionSet",
+            "actions": [
+                {
+                    "type": "Action.Execute",
+                    "title": "Einreichen",
+                    "id": "submit",
+                    "role": "Button",
+                    "associatedInputs": "auto"
+                },
+                {
+                    "type": "Action.Execute",
+                    "title": "abbrechen",
+                    "id": "cancel"
+                }
+            ]
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5"
+}
