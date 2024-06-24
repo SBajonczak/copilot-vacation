@@ -22,9 +22,6 @@
     "composeExtensions[0].commands[1].parameters[1].title": "Start",
     "composeExtensions[0].commands[1].parameters[1].description": "Beinhaltet das angeforderte Startdatum. Output ist ein date",
     "composeExtensions[0].commands[1].parameters[2].title": "Ende",
-    "composeExtensions[0].commands[1].parameters[2].description": "Beinhaltet das angeforderte Enddatum. Output ist ein date",
-
-
-    
+    "composeExtensions[0].commands[1].parameters[2].description": "Beinhaltet das angeforderte Enddatum. Output ist ein date"  
   
 }
