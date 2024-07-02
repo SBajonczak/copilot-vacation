@@ -26,6 +26,7 @@ server.post("/api/messages", async (req, res) => {
   // Route received a request to adapter for processing
   await adapter.process(req, res as any, async (context) => {
     // Check for incoming message activity
+    console.log("reqest");
     if (messageHandler.isAction(context)) {
       messageHandler.Handle(context);
     }

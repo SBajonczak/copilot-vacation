@@ -24,11 +24,11 @@
     },
     "name": {
         "short": "Holiday/Vacation/Absences",
-        "full": "Ask me anything about absences, holdays or vacations for all your Employees"
+        "full": "Ask me anything about getting and creating absences, holdays or vacations for all your Employees."
     },
     "description": {
-        "short": "Getting all informations about vacations / holidays oder absences.",
-        "full": "Getting all informations about vacations / holidays oder absences. Can be used to ask for time off by date range or specific date and or for specific users / employees or Colleagues"
+        "short": "Create and get all vacations / holidays oder absences.",
+        "full": "Getting all informations about vacations / holidays oder absences. Can be used to ask for time off by date range or specific date and or for specific users / employees or Colleagues. It's designed also to create absence / holiday entries."
     },
     "accentColor": "#FFFFFF",
     "bots": [
@@ -96,7 +96,7 @@
                         "compose",
                         "commandBox"
                     ],
-                    "description": "Create an absence or Holiday request for the current user",
+                    "description": "Create an absence or Holiday request for the current user and prepare the ",
                     "title": "create absence",
                     "type": "query",
                     "initialRun": false,
