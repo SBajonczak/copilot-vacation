@@ -1,0 +1,261 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+      {
+        "type": "TextBlock",
+        "text": "Employee: ${EmployeeName}",
+        "wrap": true,
+        "style": "heading"
+      },
+      {
+        "type": "TextBlock",
+        "text": "Project: ${projectname}",
+        "wrap": true,
+        "style": "Subject"
+      },
+      {
+        "type": "ColumnSet",
+        "horizontalAlignment": "center",
+        "columns": [
+          {
+            "type": "Column",
+            "items": [
+              {
+                "type": "ColumnSet",
+                "horizontalAlignment": "center",
+                "columns": [
+                  {
+                    "type": "Column",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "**Primary contact**",
+                        "wrap": true
+                      },
+                      {
+                        "type": "TextBlock",
+                        "spacing": "none",
+                        "text": "${ProjectManager}",
+                        "wrap": true
+                      }
+                    ],
+                    "width": "auto"
+                  }
+                ]
+              }
+            ],
+            "width": 1
+          },
+         
+          {
+            "type": "Column",
+            "spacing": "large",
+            "separator": true,
+            "items": [
+              {
+                "type": "ColumnSet",
+                "horizontalAlignment": "center",
+                "columns": [
+                 
+                  {
+                    "type": "Column",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "**Team Size**",
+                        "wrap": true
+                      },
+                      {
+                        "type": "TextBlock",
+                        "spacing": "none",
+                        "text": "${Employees} Person(s)",
+                        "wrap": true
+                      }
+                    ],
+                    "width": "auto"
+                  }
+                ]
+              }
+            ],
+            "width": 1
+          }
+        ]
+      },
+      {
+        "type": "ColumnSet",
+        "columns": [
+          {
+            "type": "Column",
+            "items": [
+              {
+                "type": "ColumnSet",
+                "columns": [
+                  {
+                    "type": "Column",
+                    "spacing": "none",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "${Start}",
+                        "wrap": true
+                      }
+                    ],
+                    "width": "stretch"
+                  }
+                ]
+              }           
+            ],
+            "width": "110px"
+          },
+          {
+            "type": "Column",
+            "backgroundImage": {
+              "url": "https://adaptivecards.io/content/SmallVerticalLineGray.png",
+              "fillMode": "repeatVertically",
+              "horizontalAlignment": "center"
+            },
+            "items": [
+              {
+                "type": "Image",
+                "horizontalAlignment": "center",
+                "url": "https://adaptivecards.io/content/CircleGreen_coffee.png",
+                "altText": "Location A: Coffee"
+              }
+            ],
+            "width": "auto",
+            "spacing": "none"
+          },
+          {
+            "type": "Column",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "**Start Project**",
+                "wrap": true
+              }
+            ],
+            "width": 40
+          }
+        ]
+      },
+      {
+        "type": "ColumnSet",
+        "spacing": "none",
+        "columns": [
+          {
+            "type": "Column",
+            "width": "110px"
+          },
+          {
+            "type": "Column",
+            "backgroundImage": {
+              "url": "https://adaptivecards.io/content/SmallVerticalLineGray.png",
+              "fillMode": "repeatVertically",
+              "horizontalAlignment": "center"
+            },
+            "items": [
+              {
+                "type": "Image",
+                "horizontalAlignment": "center",
+                "url": "https://adaptivecards.io/content/Gray_Dot.png",
+                "altText": "Gray dot"
+              }
+            ],
+            "width": "auto",
+            "spacing": "none"
+          },
+          {
+            "type": "Column",
+            "items": [
+              {
+                "type": "ColumnSet",
+                "columns": [
+                  {
+                    "type": "Column",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Projet started",
+                        "isSubtle": true,
+                        "wrap": true
+                      }
+                    ],
+                    "width": "stretch"
+                  }
+                ]
+              }
+            ],
+            "width": 40
+          }
+        ]
+      },
+      {
+        "type": "ColumnSet",
+        "spacing": "none",
+        "columns": [
+          {
+            "type": "Column",
+            "items": [
+              {
+                "type": "TextBlock",
+                "spacing": "none",
+                "text": "${End}",
+                "wrap": true
+              }
+            ],
+            "width": "110px"
+          },
+          {
+            "type": "Column",
+            "backgroundImage": {
+              "url": "https://adaptivecards.io/content/SmallVerticalLineGray.png",
+              "fillMode": "repeatVertically",
+              "horizontalAlignment": "center"
+            },
+            "items": [
+              {
+                "type": "Image",
+                "horizontalAlignment": "center",
+                "url": "https://adaptivecards.io/content/CircleBlue_flight.png",
+                "altText": "Location B: Flight"
+              }
+            ],
+            "width": "auto",
+            "spacing": "none"
+          },
+          {
+            "type": "Column",
+            "items": [
+              {
+                "type": "TextBlock",
+                "text": "**End Project**",
+                "wrap": true
+              },
+              {
+                "type": "ColumnSet",
+                "spacing": "none",
+                "columns": [
+                  
+                  {
+                    "type": "Column",
+                    "items": [
+                      {
+                        "type": "TextBlock",
+                        "text": "Project ended",
+                        "wrap": true
+                      }
+                    ],
+                    "width": "stretch"
+                  }
+                ]
+              }
+            ],
+            "width": 40
+          }
+        ]
+      }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.5"
+  }
+  
